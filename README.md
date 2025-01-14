@@ -1,1 +1,1 @@
-# -Python-ohjelmointi-Kurssille
+# -Python-ohjelmointi-Kurssi
