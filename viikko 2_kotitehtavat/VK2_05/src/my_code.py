@@ -23,3 +23,18 @@ Eli tulostuvan lukuparin ensimmäinen arvo kasvaa ja toinen vähenee lähtien li
 
 """
 
+def main():
+    # Pedir al usuario los dos números
+    alkuarvo = int(input("Anna alkuarvo: "))  # Número inicial
+    toistot = int(input("Anna toistojen määrä: "))  # Número de repeticiones
+
+    # Usar un bucle for para imprimir los pares de números
+    for i in range(toistot + 1):  # Repite 'toistot' veces, incluyendo 0
+        vasen = alkuarvo + i  # El número izquierdo incrementa en 1 cada vez
+        oikea = alkuarvo - i  # El número derecho disminuye en 1 cada vez
+        print(f"{vasen},{oikea}")
+
+
+if __name__ == "__main__":
+    main()
+

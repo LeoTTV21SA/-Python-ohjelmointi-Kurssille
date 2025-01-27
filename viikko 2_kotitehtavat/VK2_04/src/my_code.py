@@ -15,3 +15,25 @@ Missä siis arvo 27 kertoo montako kierrosta meni ennen kuin käyttäjä arvasi 
 
 """
 
+# Määrittele ARVATAVA_LUKU-vakio
+def ARVATTAVA_LUKU():
+    return 124
+
+# Alusta muuttujat
+ARVATTAVA_LUKU = ARVATTAVA_LUKU()
+kierrokset = 0  # Yrityslaskuri
+
+# Silmukka, jotta käyttäjä yrittää arvata numeron
+while True:
+    arvaus = int(input("Arvaa luku: "))  # Lue käyttäjän syöte
+    kierrokset += 1  # Kasvata yrityslaskuria
+
+   # Vertaa käyttäjän syötettä kohdenumeroon
+    if arvaus > ARVATTAVA_LUKU:
+        print("Annoit liian suuren luvun")
+    elif arvaus < ARVATTAVA_LUKU:
+        print("Annoit liian pienen luvun")
+    else:
+        # Jos käyttäjä arvaa oikein
+        print(f"Oikein, arvasit luvun {kierrokset} kerralla!")
+        break  # Poistu silmukasta

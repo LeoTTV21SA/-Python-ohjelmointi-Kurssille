@@ -18,3 +18,22 @@ Lue käyttäjältä koenumero 4-10 väliltä. Jos käyttäjä syötti arvosanan 
 
  
 """
+
+# Leer el número del usuario
+arvosana = int(input("Anna koenumero (4-10 väliltä): "))
+
+# Verificar si la nota está dentro del rango válido
+if arvosana < 4 or arvosana > 10:
+    print("Et antanut arvosanaa annetulta väliltä")
+else:
+    # Clasificar según la calificación
+    if arvosana == 9 or arvosana == 10:
+        print("Hyvä")
+    elif arvosana == 7 or arvosana == 8:
+        print("Kelpo")
+    elif arvosana == 5 or arvosana == 6:
+        print("Tyydyttävä")
+    elif arvosana == 4:
+        print("Heikko")
+
+

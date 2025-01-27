@@ -18,3 +18,15 @@ Toteuta ohjelma if-elif-else -rakenteella.
 Ole tarkka, että tulostat juuri sen tekstin, jota pyydettiin!
 """
 
+lampotila = float(input("Syötä lämpötila: ")) 
+
+if lampotila > 39:
+    print("Liian kuuma")
+elif lampotila <= 39 and lampotila > 10:
+    print("Lämmintä")
+elif lampotila <= 10 and lampotila >= 0:
+    print("Haaleaa")
+elif lampotila < 0 and lampotila > -30:
+    print("Pakkasta")
+elif lampotila <= -30:
+    print("Liian kylmää")
