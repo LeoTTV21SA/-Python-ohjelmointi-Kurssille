@@ -64,6 +64,43 @@ Anna valintasi: 0
 """
 
 
+import math
+
+def main():
+    sade = 0.0  # Säteen alkuarvo
+    while True:
+        # Näytä asetusvalikko
+        print("0 = Lopetus")
+        print("1 = Anna säde")
+        print("2 = Laske ympyrän piiri")
+        print("3 = Laske ympyrän pinta-ala")
+        print("Anna valintasi: ", end="")
+        try:
+            valinta = int(input().strip())  # Muunna syöte kokonaisluvuksi
+        except ValueError:
+            valinta = -1  # Virheellinen arvo lopettaa ohjelman
+        
+        if valinta == 0:
+            print("Lopetus")
+            break
+        elif valinta == 1:
+            print("Anna säde: ", end="")
+            try:
+                sade = float(input().strip())
+            except ValueError:
+                sade = 0.0   # Jos syöte on virheellinen, pidä säde arvossa 0
+        elif valinta == 2:
+            piiri = 2 * math.pi * sade
+            print(f"Piiri on {piiri:.2f}")
+        elif valinta == 3:
+            ala = math.pi * sade * sade
+            print(f"Ala on {ala:.2f}")
+        else:   
+         # Mikä tahansa muu vaihtoehto lopettaa ohjelman
+            break
+if __name__ == "__main__":
+    main()
+
 
 
 

@@ -64,3 +64,33 @@ Saat toimeentulotukea 506.60 euroa
 Haluatko laskea toimeentulotuen uusilla tiedoilla (k/e): e
 
 """
+while True:
+    halua = input("Haluatko laskea toimeentulotuen uusilla tiedoilla (k/e): ").strip().lower()
+    if halua != 'k':
+        break
+
+    asuminen = input("Asutko yksin (1) vai puolison kanssa (2) : ").strip()
+    lapset = input("Onko sinulla/teillä alaikäisiä lapsia (k/e) : ").strip().lower()
+
+    alle_10 = 0
+    yli_10 = 0
+
+    if lapset == 'k':
+        alle_10 = int(input("Kuinka monta alle 10-vuotiasta lasta : "))
+        yli_10 = int(input("Kuinka monta 10-17-vuotiasta lasta : "))
+
+    paivat = int(input("Kuinka monelle päivälle tuki lasketaan : "))
+
+    # Päivärahan laskenta
+    if asuminen == '1':
+        if lapset == 'k':
+            perus = 17.80
+        else:
+            perus = 16.18
+    else:  # asuminen == '2'
+        perus = 13.76
+
+    lapsiraha = (alle_10 * 10.20) + (yli_10 * 11.33)
+    kokonais = (perus + lapsiraha) * paivat
+
+    print(f"Saat toimeentulotukea {kokonais:.2f} euroa\n")
