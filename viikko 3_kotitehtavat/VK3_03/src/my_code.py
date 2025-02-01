@@ -39,3 +39,33 @@ Ole taas huolellinen tulostusten kanssa!
 
 """
 
+# KT3
+
+kieli = input("Millä kielellä /Please choose language (0 = suomi, 1 = english): ")
+
+viikonpaivat = [
+    ["Maanantai", "Monday"],
+    ["Tiistai", "Tuesday"],
+    ["Keskiviikko", "Wednesday"],
+    ["Torstai", "Thursday"],
+    ["Perjantai", "Friday"]
+]
+
+if kieli == "1":
+    lang_index = 1
+else:
+    lang_index = 0
+
+sade_maarat = {}
+
+for paiva in viikonpaivat:
+    paiva_nimi = paiva[lang_index]  
+    sade_maarat[paiva_nimi] = []
+
+    for i in range(1, 5):  
+        sade = float(input(f"{paiva_nimi} {i}. : "))
+        sade_maarat[paiva_nimi].append(sade)
+
+for paiva, maara in sade_maarat.items():
+    keskiarvo = sum(maara) / len(maara)  
+    print(f"{paiva} {keskiarvo:.1f} mm")  

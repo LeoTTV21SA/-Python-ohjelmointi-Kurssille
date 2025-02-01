@@ -19,3 +19,26 @@
 #
 
 
+import random
+
+def main():
+    try:
+        maara = int(input("Montako lukua arvotaan: "))
+        if maara < 1:
+            print("Virhe!")
+            return
+        
+        luvut = []
+        while len(luvut) < maara:
+            luku = random.randint(0, 20)
+            if luku % 2 == 0:
+                luvut.append(luku)
+        
+        print(f"Suurin: {max(luvut)} ja pienin: {min(luvut)}")
+        print(",".join(map(str, luvut)))
+    
+    except ValueError:
+        print("Virhe!")
+
+if __name__ == "__main__":
+    main()
