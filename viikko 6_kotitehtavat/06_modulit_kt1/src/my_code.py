@@ -26,17 +26,18 @@ Esimerkkitulostus:
 
 """
 #Write lambdas and laske here
-
-summa = #Insert your code here
-tulo = #Insert your code here
+from functools import reduce
+summa = lambda a, b: a + b #Insert your code here
+tulo =lambda a, b: a * b #Insert your code here
 
 def laske(function, luvut):
-    
     #Your code here
-    
-    return tulos
-
-
+      if not luvut:
+        return 0
+      if len(luvut) == 1:
+        return luvut[0]
+      return reduce(function, luvut)
+ 
 #Don't touche lines below
 if __name__ == "__main__":
     luvut = [1,5,8,11,3]
@@ -47,6 +48,6 @@ if __name__ == "__main__":
     print(laske(tulo, luvut))
     print(laske(summa, luvut))
 
-     luvut = []
-     print(laske(tulo, luvut))
-     print(laske(summa, luvut))
+    luvut = []
+    print(laske(tulo, luvut))
+    print(laske(summa, luvut))

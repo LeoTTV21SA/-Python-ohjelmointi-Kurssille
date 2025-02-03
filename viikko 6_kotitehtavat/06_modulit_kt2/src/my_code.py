@@ -29,30 +29,46 @@ filename="./tilaukset.json"
 
 #Replace pass-lines with your code
 
-class Tilaus(dict):
-    pass
+class Tilaus:
+    def __init__(self, tilausnumero, tuotekoodi, maara):
+        self.tilausnumero = tilausnumero
+        self.tuotekoodi = tuotekoodi
+        self.maara = maara
+
+    def to_dict(self):
+        return {
+            "tilausnumero": self.tilausnumero,
+            "tuotekoodi": self.tuotekoodi,
+            "maara": self.maara
+        }
 
 def hae_tilaukset():
-    pass
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 def talleta_tilaukset(tilaukset):
-    pass
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(tilaukset, file, ensure_ascii=False, indent=4)
 
 def tulosta_tilaukset(tilaukset):
-    pass
+    for tilaus in tilaukset:
+        print(tilaus)
 
 if __name__ == '__main__':
     tilaukset = hae_tilaukset()
 
-    while(True):
-        vast=input("Lisataanko tilaustuote (k/e): ")
-        if (vast.upper() != "K"):
+    while True:
+        vast = input("Lisataanko tilaustuote (k/e): ")
+        if vast.lower() != "k":
             break
-        tilausnumero=input("Tilausnumero: ")
-        tuotekoodi=input("Tuotekoodi: ")
-        maara=int(input("Maara: "))
-        tilaus=Tilaus(tilausnumero,tuotekoodi,maara)
-        tilaukset.append(vars(tilaus))
+        tilausnumero = input("Tilausnumero: ")
+        tuotekoodi = input("Tuotekoodi: ")
+        maara = int(input("Maara: "))
+        tilaus = Tilaus(tilausnumero, tuotekoodi, maara)
+        tilaukset.append(tilaus.to_dict())
 
     talleta_tilaukset(tilaukset)
     del tilaukset
@@ -61,6 +77,3 @@ if __name__ == '__main__':
     t_list=hae_tilaukset()
     #Print JSON structure
     tulosta_tilaukset(t_list)
-
-
-
