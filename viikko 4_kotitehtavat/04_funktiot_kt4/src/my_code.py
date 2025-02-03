@@ -6,8 +6,23 @@ Kirjoita funktio Tsekkaus, joka tulostaa ensin tiedon siitä, kuinka monta param
 """
 #Write functions and define global variables here!
 
-
+def Tsekkaus(*args):
+    print(f"Parametrien määrä: {len(args)}")
+    
+    if len(args) == 0:
+        print("Virhe")
+        return
+    
+    if args[0] == "opettaja":
+        print("Koita saada oppilaat oppimaan")
+    elif args[0] == "opiskelija":
+        print("Koita opiskella ahkerasti")
+    else:
+        print("En ymmarra")
 
 if __name__ == "__main__":
-    #Write main program below this line
-    pass
+    # Testiesimerkkejä
+    Tsekkaus("opettaja", "matematiikka")
+    Tsekkaus("opiskelija", "historia", "kemia")
+    Tsekkaus("muu", "esimerkki")
+    Tsekkaus()

@@ -25,9 +25,17 @@ Tulosta näiden paluuarvojen perusteella pääohjelmassa ilmoitus ruudulle.
 """
 
 #Write KysyJaTestaaLuku function here!
-
+def KysyJaTestaaLuku():
+    while True:
+        try:
+            luku = int(input("Syötä kokonaisluku: "))
+            return 1 if luku > 0 else 0 if luku == 0 else -1
+        except ValueError:
+            print("Virheellinen syöte, anna kokonaisluku.")
 
 
 if __name__ == "__main__":
     #Write main program below this line
+  tulokset = {1: "Luku oli positiivinen", 0: "Luku oli nolla", -1: "Luku oli negatiivinen"}
+  print(tulokset[KysyJaTestaaLuku()])
 

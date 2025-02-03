@@ -16,9 +16,45 @@ Huolehdi, että ohjelma ei kaadu, jos arvosanaksi annetaan muuta kuin numeroita
 
 #Write functions here!
 
+def LuoNimetJaArvosanat():
+    arvosanat = {}
+    while True:
+        nimi = input("Anna nimi (LOPPU lopettaa): ")
+        if nimi == "LOPPU":
+            break
+        if nimi in arvosanat:
+            print("Nimi on jo lisätty. Anna eri nimi.")
+            continue
+        try:
+            arvosana = int(input("Anna arvosana (0-5): "))
+            if arvosana < 0:
+                arvosana = 0
+            elif arvosana > 5:
+                arvosana = 5
+            arvosanat[nimi] = arvosana
+        except ValueError:
+            print("Virheellinen syöte! Anna kokonaisluku.")
+    return arvosanat
 
+def TulostaHylatyt(arvosanat):
+    hylatyt = [nimi for nimi, arvosana in arvosanat.items() if arvosana == 0]
+    if hylatyt:
+        print("Hylätyt:", ", ".join(hylatyt))
+
+def PalautaHylattyjenMaara(arvosanat):
+    maara = sum(1 for arvosana in arvosanat.values() if arvosana == 0)
+    print(maara)
+    return maara
+
+def TulostaKaikki(arvosanat):
+    for nimi, arvosana in arvosanat.items():
+        print(nimi, arvosana)
 
 if __name__ == "__main__":
-    #Write main program below this line
+     #Write main program below this line
+    arvosanat = LuoNimetJaArvosanat()
+    if PalautaHylattyjenMaara(arvosanat) > 0:
+        TulostaHylatyt(arvosanat)
+    else:
+        TulostaKaikki(arvosanat)
 
-        

@@ -17,8 +17,50 @@ LaskeHypynPisteet - Saa ensimmäisenä parametrina hypyn pituuden sekä toisena 
 """
 #Write functions and define global variables here!
 
-    
+# Globaali vakio kriittiselle pisteelle
+KR_PISTE = 90.0
+
+def KysyHypynPituus():
+    """Kysyy käyttäjältä hypyn pituuden ja palauttaa sen liukulukuna."""
+    while True:
+        try:
+            pituus = float(input("Anna hypyn pituus (0.5 m välein): "))
+            if pituus >= 0:
+                return pituus
+            else:
+                print("Pituuden on oltava positiivinen.")
+        except ValueError:
+            print("Virheellinen syöte. Anna numero.")
+
+def KysyTuomareidenPisteet():
+    """Kysyy viiden tuomarin pisteet ja palauttaa ne listana."""
+    pisteet = []
+    for i in range(5):
+        while True:
+            try:
+                piste = float(input(f"Anna tuomari {i+1}:n pisteet (0-20, 0.5 välein): "))
+                if 0 <= piste <= 20 and piste * 2 == int(piste * 2):  # Tarkistaa 0.5 välin
+                    pisteet.append(piste)
+                    break
+                else:
+                    print("Virheellinen syöte. Anna piste välillä 0-20, 0.5 välein.")
+            except ValueError:
+                print("Virheellinen syöte. Anna numero.")
+    return pisteet
+
+def LaskeHypynPisteet(pituus, pisteet):
+    """Laskee hypyn kokonaispisteet ja palauttaa sen."""
+    piste_ero = (pituus - KR_PISTE) * 1.8
+    pisteet.sort()
+    keskimmäiset_pisteet = sum(pisteet[1:4])  # Kolmen keskimmäisen pisteet
+    return piste_ero + keskimmäiset_pisteet + 60
+
 if __name__ == "__main__":
     #Write main program below this line
-
+    hypyn_pituus = KysyHypynPituus()
+    tuomari_pisteet = KysyTuomareidenPisteet()
+    hypyn_pisteet = LaskeHypynPisteet(hypyn_pituus, tuomari_pisteet)
+    
+    print(f"Hypyn pituus: {hypyn_pituus} m")
+    print(f"Hypyn pisteet: {hypyn_pisteet:.1f}")
 
