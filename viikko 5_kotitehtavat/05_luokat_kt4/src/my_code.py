@@ -63,6 +63,71 @@ Paino:      100kg
 from datetime import datetime
 #Write class and imports here!
 
+class tuote:
+    def __init__(self, nimi, hinta, hyllypaikka, koodi):
+        self.nimi = nimi
+        self.hinta = float(hinta)
+        self.hyllypaikka = hyllypaikka
+        self.koodi = koodi
+    
+    def __str__(self):
+        return f"Nimi: {self.nimi}\nHinta: {self.hinta:.2f}\nHylly: {self.hyllypaikka}\nKoodi: {self.koodi}"
+
+class vaate(tuote):
+    def __init__(self, nimi, hinta, hyllypaikka, koodi, koko, materiaali):
+        super().__init__(nimi, hinta, hyllypaikka, koodi)
+        self.koko = koko
+        self.materiaali = materiaali
+    
+    def __str__(self):
+        return super().__str__() + f"\nKoko: {self.koko}\nMateriaali: {self.materiaali}"
+
+class ruoka(tuote):
+    def __init__(self, nimi, hinta, hyllypaikka, koodi, maa, paivays):
+        super().__init__(nimi, hinta, hyllypaikka, koodi)
+        self.maa = maa
+        self.paivays = paivays
+    
+    def __str__(self):
+        return super().__str__() + f"\nAlkuperä: {self.maa}\nPäiväys: {self.paivays}"
+
+class kodinkone(tuote):
+    def __init__(self, nimi, hinta, hyllypaikka, koodi, takuu, paino):
+        super().__init__(nimi, hinta, hyllypaikka, koodi)
+        self.takuu = takuu
+        self.paino = paino
+    
+    def __str__(self):
+        return super().__str__() + f"\nTakuu: {self.takuu}\nPaino: {self.paino}"
 
 if __name__ == "__main__":
-    #Main program here!
+    tuotteet = []
+    
+    while True:
+        valinta = input("Mikä tuote lisätään listaan (1 = Ruoka, 2 = Vaate, 3 = Kodinkone, muu = Lopetus): ")
+        if valinta not in ('1', '2', '3'):
+            break
+        
+        nimi = input("Anna tuotteen nimi: ")
+        hinta = input("Anna hinta: ")
+        hyllypaikka = input("Anna hyllypaikka: ")
+        koodi = input("Anna koodi: ")
+        
+        if valinta == '1':
+            maa = input("Ruuan alkuperämaa: ")
+            paivays = input("Päiväys: ")
+            tuotteet.append(ruoka(nimi, hinta, hyllypaikka, koodi, maa, paivays))
+        elif valinta == '2':
+            koko = input("Vaatteen koko: ")
+            materiaali = input("Vaatteen materiaali: ")
+            tuotteet.append(vaate(nimi, hinta, hyllypaikka, koodi, koko, materiaali))
+        elif valinta == '3':
+            takuu = input("Kodinkoneen takuu: ")
+            paino = input("Kodinkoneen paino: ")
+            tuotteet.append(kodinkone(nimi, hinta, hyllypaikka, koodi, takuu, paino))
+    
+    print("\nLista tuotteista:\n")
+    for tuote in tuotteet:
+        print(tuote, "\n")
+
+

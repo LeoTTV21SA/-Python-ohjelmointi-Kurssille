@@ -26,6 +26,29 @@ Lähettäjän +35844126783 viestit ovat:
 from datetime import datetime
 #Write class and imports here!
 
+class Tekstiviesti:
+    def __init__(self, lahettaja, vastaanottaja, lahetys_aika, viesti):
+        if lahetys_aika > datetime.now():
+            raise ValueError("Lähetysaika ei voi olla tulevaisuudessa.")
+        self.lahettaja = lahettaja
+        self.vastaanottaja = vastaanottaja
+        self.lahetys_aika = lahetys_aika
+        self.viesti = viesti
+    
+    def __str__(self):
+        return f"{self.lahettaja} {self.vastaanottaja} {self.lahetys_aika.strftime('%d.%m.%Y')} {self.viesti}"
+
+class SMSUtils:
+    @staticmethod
+    def haePaivanViestit(viestit, paiva):
+        return [viesti for viesti in viestit if viesti.lahetys_aika.date() == paiva.date()]
+    
+    @staticmethod
+    def tulostaNumeronViestit(viestit, numero):
+        for viesti in viestit:
+            if viesti.lahettaja == numero:
+                print(viesti)
+
 if __name__ == "__main__":
     viestit=[]
     dateFormat='%d.%m.%Y'
@@ -50,3 +73,4 @@ if __name__ == "__main__":
     lahettaja='+35844126783'
     print('Lähettäjän', lahettaja, 'viestit ovat:')
     SMSUtils.tulostaNumeronViestit(viestit, lahettaja)
+
